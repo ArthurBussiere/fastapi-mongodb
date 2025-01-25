@@ -12,8 +12,3 @@ class UpdateItemSchema(BaseModel):
     description: Optional[str]
 
 
-class ItemResponseModel(BaseModel):
-    data: Optional[Any] = None
-    code: int
-    message: str
-

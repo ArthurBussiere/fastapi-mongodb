@@ -3,13 +3,22 @@
 from http import HTTPMethod
 
 from fastapi.routing import APIRoute
-import app.routes.items as items
+from app.routes.items import ItemCRUD as items
+from app.routes.users import UserCRUD as users
 
 
 routes = [
-    (HTTPMethod.GET,    "/items",              items.get_items,                 200),
-    (HTTPMethod.GET,    "/items/{id}",         items.get_item,                  200),
-    (HTTPMethod.POST,   "/items",              items.add_item,                  200)
+    # ITEMS
+    (HTTPMethod.GET,        "/items",                   items.get_items,                200),
+    (HTTPMethod.GET,        "/items/{id}",              items.get_item,                 200),
+    (HTTPMethod.POST,       "/items",                   items.add_item,                 200),
+    (HTTPMethod.DELETE,     "/items/{id}",              items.delete_item,              200),
+
+    # USERS
+    (HTTPMethod.GET,        "/users",                   users.get_users,                200),
+    (HTTPMethod.GET,        "/users/{id}",              users.get_user,                 200),
+    (HTTPMethod.POST,       "/users",                   users.add_user,                 200),
+    (HTTPMethod.DELETE,     "/users/{id}",              users.delete_user,              200),
 ]
 
 

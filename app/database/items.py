@@ -1,10 +1,8 @@
-# Child Class for Item-Specific Operations
 from app.database.database import Database
 
 
 class ItemDatabase(Database):
     def __init__(self, mongo_details: str, db_name: str):
-        # Initialize the parent class with the items collection
         super().__init__(mongo_details, db_name, "items_collection")
 
     @staticmethod
@@ -28,3 +26,7 @@ class ItemDatabase(Database):
         async for item in self.collection.find({"name": name}):
             items.append(self.document_helper(item))
         return items
+
+    # async def search_items(self, query: str):
+    #     await self.collection.find()
+    #     pass
