@@ -3,7 +3,7 @@
 from http import HTTPMethod
 
 from fastapi.routing import APIRoute
-import app.server.routes.items as items
+import app.routes.items as items
 
 
 routes = [
