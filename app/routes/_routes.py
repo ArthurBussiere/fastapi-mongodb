@@ -3,8 +3,8 @@
 from http import HTTPMethod
 
 from fastapi.routing import APIRoute
-from app.routes.items import ItemCRUD as items
-from app.routes.users import UserCRUD as users
+from app.routes import items
+from app.routes import users
 
 
 routes = [

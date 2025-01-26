@@ -27,4 +27,5 @@ class UserSchema(BaseModel):
 
 
 class UserInDB(UserSchema):
-    hashed_password: str
+    id : str
+    hashed_password: str | None = None

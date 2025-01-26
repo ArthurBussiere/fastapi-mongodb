@@ -12,3 +12,5 @@ class UpdateItemSchema(BaseModel):
     description: Optional[str]
 
 
+class ItemInDB(ItemSchema):
+    id: str

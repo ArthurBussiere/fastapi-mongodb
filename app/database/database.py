@@ -16,12 +16,12 @@ class Database:
         """
         return {"id": str(document["_id"])}
 
-    async def retrieve_all(self) -> list:
+    async def retrieve_all(self, query = None) -> list:
         """
         Retrieve all documents from the collection.
         """
         documents = []
-        async for document in self.collection.find():
+        async for document in self.collection.find(query):
             documents.append(self.document_helper(document))
         return documents
 
