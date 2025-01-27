@@ -14,7 +14,7 @@ async def add_item(item: ItemSchema = Body(...)) -> ResponseModel:
     return ResponseModel(data=new_item, message="Item added successfully", code=status.HTTP_201_CREATED)
 
 
-async def get_items(name:str = None):
+async def get_items(name:str = None)-> ResponseModel:
     queries = {"name": name} if name else {}
     if items := await item_db.retrieve_all(queries):
         return ResponseModel(data=items, message="Items data retrieved successfully", code=status.HTTP_200_OK)
