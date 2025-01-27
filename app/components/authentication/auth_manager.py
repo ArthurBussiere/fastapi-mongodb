@@ -7,12 +7,12 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import InvalidTokenError
 
-from app.models.auth import TokenData
-from app.database.users import user_db
-from app.models.users import UserInDB
-from app.core.config import settings
+from models.auth import TokenData
+from database.users import user_db
+from models.users import UserInDB
+from core.config import settings
 
-from app.core.logger import logger
+from core.logger import logger
 
 pwd_context = CryptContext(schemes=["bcrypt"])
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")

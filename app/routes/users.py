@@ -1,12 +1,12 @@
 from fastapi import Body, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 
-from app.database.users import user_db
+from database.users import user_db
 
-from app.models.users import UserSchema
-from app.models.response import ResponseModel
+from models.users import UserSchema
+from models.response import ResponseModel
 
-from app.components.authentication.auth_manager import get_password_hash
+from components.authentication.auth_manager import get_password_hash
 
 
 async def add_user(user: UserSchema = Body(...)) -> ResponseModel:

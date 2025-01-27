@@ -2,11 +2,11 @@ from http import HTTPMethod
 
 from fastapi import Depends
 from fastapi.routing import APIRoute
-from app.components.authentication.auth_manager import get_current_active_user
+from components.authentication.auth_manager import get_current_active_user
 
-from app.routes import items
-from app.routes import users
-from app.routes import auth
+from routes import items
+from routes import users
+from routes import auth
 
 routes = [
 

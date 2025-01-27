@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from app.core.config import settings
+from core.config import settings
 import motor.motor_asyncio
 
 
@@ -10,7 +10,7 @@ class Database(ABC):
         self,
         db_name: str,
         collection_name: str,
-        mongo_details: str = settings.MONGO_DB_SERVER
+        mongo_details: str = f"mongodb://{settings.MONGO_DB_USERNAME}:{settings.MONGO_DB_PASSWORD}@{settings.MONGO_DB_SERVER}"
     ):
         """
         Initialize the database connection.

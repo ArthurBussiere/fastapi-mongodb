@@ -2,9 +2,9 @@
 from fastapi import Body, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 
-from app.database.items import item_db
-from app.models.items import ItemSchema
-from app.models.response import ResponseModel
+from database.items import item_db
+from models.items import ItemSchema
+from models.response import ResponseModel
 
 
 

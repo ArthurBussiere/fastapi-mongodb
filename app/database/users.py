@@ -1,5 +1,5 @@
-from app.database.database import Database
-from app.models.users import UserInDB
+from database.database import Database
+from models.users import UserInDB
 from bson.objectid import ObjectId
 
 

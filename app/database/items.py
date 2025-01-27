@@ -1,8 +1,8 @@
-from app.database.database import Database
-from app.models.items import ItemInDB
+from database.database import Database
+from models.items import ItemInDB
 
-from app.database.database import Database
-from app.models.items import ItemInDB
+from database.database import Database
+from models.items import ItemInDB
 from bson.objectid import ObjectId
 
 

@@ -2,10 +2,10 @@ from datetime import timedelta
 from typing import Annotated
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
-from app.core.config import settings
-from app.models.auth import Token
+from core.config import settings
+from models.auth import Token
 
-from app.components.authentication.auth_manager import authenticate_user, create_access_token
+from components.authentication.auth_manager import authenticate_user, create_access_token
 
 
 
