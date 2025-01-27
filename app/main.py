@@ -1,14 +1,13 @@
 import uvicorn
-from core.logger import LOGGING_CONFIG
-
 import json
 
 from fastapi import APIRouter, FastAPI, Request
 from fastapi.openapi.utils import get_openapi
 
 from routes._routes import fastapi_routes
-from core.config import settings
 
+from core.config import settings
+from core.logger import LOGGING_CONFIG
 from core.logger import logger
 
 app = FastAPI(
