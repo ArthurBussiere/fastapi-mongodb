@@ -1,19 +1,17 @@
-from fastapi import Body, HTTPException, Response, status
+from fastapi import Body, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 
-from app.database.users import UserDatabase
+from app.database.users import user_db
 
 from app.models.users import UserSchema
 from app.models.response import ResponseModel
 
-mongo_details = "mongodb://rootuser:rootpass@localhost:27017"
-
-# Instantiate the UserDatabase
-user_db = UserDatabase(mongo_details, "users")
+from app.components.authentication.auth_manager import get_password_hash
 
 
 async def add_user(user: UserSchema = Body(...)) -> ResponseModel:
     user = jsonable_encoder(user)
+    user['hashed_password'] = get_password_hash(user['password'])
     new_user = await user_db.insert(user)
     return ResponseModel(data=new_user, message="User added successfully", code=status.HTTP_200_OK)
 

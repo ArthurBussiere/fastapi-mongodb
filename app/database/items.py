@@ -2,8 +2,8 @@ from app.database.database import Database
 from app.models.items import ItemInDB
 
 class ItemDatabase(Database):
-    def __init__(self, mongo_details: str, db_name: str):
-        super().__init__(mongo_details, db_name, "items_collection")
+    def __init__(self):
+        super().__init__(db_name="items", collection_name="items_collection")
 
     @staticmethod
     def document_helper(document) -> ItemInDB:
@@ -26,3 +26,6 @@ class ItemDatabase(Database):
         async for item in self.collection.find({"name": name}):
             items.append(self.document_helper(item))
         return items
+
+
+item_db = ItemDatabase()

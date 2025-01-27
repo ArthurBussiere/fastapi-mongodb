@@ -1,15 +1,11 @@
-from fastapi import Body, HTTPException, Response, status
+
+from fastapi import Body, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 
-from app.database.items import ItemDatabase
-
+from app.database.items import item_db
 from app.models.items import ItemSchema
 from app.models.response import ResponseModel
 
-mongo_details = "mongodb://rootuser:rootpass@localhost:27017"
-
-# Instantiate the ItemDatabase
-item_db = ItemDatabase(mongo_details, "items")
 
 
 async def add_item(item: ItemSchema = Body(...)) -> ResponseModel:

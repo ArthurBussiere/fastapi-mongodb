@@ -3,7 +3,11 @@ from bson.objectid import ObjectId
 
 # Parent Class for Database Operations
 class Database:
-    def __init__(self, mongo_details: str, db_name: str, collection_name: str):
+    def __init__(
+            self,
+            db_name: str,
+            collection_name: str,
+            mongo_details: str = "mongodb://rootuser:rootpass@localhost:27017"):
         self.client = motor.motor_asyncio.AsyncIOMotorClient(mongo_details)
         self.database = self.client[db_name]
         self.collection = self.database[collection_name]

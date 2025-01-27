@@ -1,15 +1,5 @@
 from enum import Enum
-from typing import Any, Optional
 from pydantic import BaseModel
-
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-
-class TokenData(BaseModel):
-    username: str | None = None
 
 
 class UserRoleEnum(str, Enum):
@@ -21,11 +11,18 @@ class UserRoleEnum(str, Enum):
 class UserSchema(BaseModel):
     username: str
     email: str
+    password: str
     role: UserRoleEnum
     fullname: str | None = None
     disabled: bool | None = None
 
 
-class UserInDB(UserSchema):
+
+class UserInDB(BaseModel):
     id : str
+    username: str
+    email: str
+    role: UserRoleEnum
+    fullname: str | None = None
+    disabled: bool | None = None
     hashed_password: str | None = None
