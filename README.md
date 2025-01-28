@@ -35,16 +35,29 @@
    ```properties
    MONGO_DB_USERNAME="<username>"
    MONGO_DB_PASSWORD="<password>"
-   SECRET_KEY="<secret_key>"
+   SECRET_KEY="<secret_key>" # command to generate: openssl rand -hex 32
    ```
 
 4. Use uv to create venv and manage packages & dependencies
-    ```bash
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    uv sync
-    ```
+
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   uv sync
+   ```
 
 5. Run Docker Compose to install MongoDB & MongoExpress services
-    ```bash
-    docker compose --profile database up -d
-    ```
+
+   ```bash
+   docker compose --profile database up -d
+   ```
+
+6. Run fast-api as development
+   ```bash
+       source .venv/bin/activate
+       fastapi dev app/main.py
+   ```
+
+
+### 🚀 Deployment
+
+⚠️ Work in Progress – Stay tuned!WIP
