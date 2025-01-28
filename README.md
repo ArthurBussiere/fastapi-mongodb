@@ -17,20 +17,20 @@
 
 ### 🚀 Get Started
 
-1. Clone the repository:
+1. Clone the repository
 
    ```sh
    git clone https://github.com/ArthurBussiere/fastapi-mongodb.git
    cd fastapi-mongodb
    ```
 
-2. Create a .env file and copy the content of .env.template:
+2. Create a .env file and copy the content of .env.template
 
    ```bash
    cp .env.template .env
    ```
 
-3. Edit .env file and define at least theses variables:
+3. Edit .env file and define at least theses variables
 
    ```properties
    MONGO_DB_USERNAME="<username>"
@@ -38,4 +38,13 @@
    SECRET_KEY="<secret_key>"
    ```
 
-4. 
+4. Use uv to create venv and manage packages & dependencies
+    ```bash
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    uv sync
+    ```
+
+5. Run Docker Compose to install MongoDB & MongoExpress services
+    ```bash
+    docker compose --profile database up -d
+    ```
