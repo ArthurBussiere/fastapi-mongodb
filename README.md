@@ -1,18 +1,41 @@
-## Fastapi MongoDB Template
+## 🚀 FastAPI with MongoDB - Template
 
-### Stack
+### 🏗️ Tech Stack
 
-- 🐍 **Backend**: Python Framework FastAPI
-- 📓 **Database**: MongoDB as NoSQL database
-- 🔍 **Controls**: Pydantic for data validation
-- 🐋 **Docker Compose**: Deployment in development or production env
+- **🐍 FastAPI** – High-performance Python web framework
+- **🌱 MongoDB** – NoSQL database for scalable storage
+- **🔍 Pydantic** – Data validation and serialization
+- **🐋 Docker Compose** – Simplified containerized deployment
+- **📓 Mongo Express** – Web-based MongoDB admin interface
 
-### Configure
+### 🎯 Features
 
-Create a .env file and copy the content of .env.template:
+- Easy integration of FastAPI with MongoDB
+- Pydantic-powered request validation
+- Dockerized setup for seamless development and deployment
+- Built-in Mongo Express for database management
 
-```bash
-cp .env.template .env
-```
+### 🚀 Get Started
 
-Edit .env file and define at least variable in <>
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/ArthurBussiere/fastapi-mongodb.git
+   cd fastapi-mongodb
+   ```
+
+2. Create a .env file and copy the content of .env.template:
+
+   ```bash
+   cp .env.template .env
+   ```
+
+3. Edit .env file and define at least theses variables:
+
+   ```properties
+   MONGO_DB_USERNAME="<username>"
+   MONGO_DB_PASSWORD="<password>"
+   SECRET_KEY="<secret_key>"
+   ```
+
+4. 
