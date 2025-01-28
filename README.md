@@ -53,8 +53,8 @@
 
 6. Run fast-api as development
    ```bash
-       source .venv/bin/activate
-       fastapi dev app/main.py
+   source .venv/bin/activate
+   fastapi dev app/main.py
    ```
 
 
