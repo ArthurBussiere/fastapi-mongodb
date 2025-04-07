@@ -1,23 +1,32 @@
-# mongo-express.yml
-
 services:
   mongodb:
     image: mongo
-    container_name: mongodb
+    container_name: ${MONGO_DB_SERVER}
+    restart: always
     profiles:
       - database
+      - application
+    networks:
+      - app_network
     env_file: .env
     ports:
       - ${MONGO_DB_PORT}:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
+    volumes:
+      - /opt/app/mongo_db/mongo_data:/data/db
+      - /opt/app/mongo_db/db_confs/mongod.conf:/etc/mongo/mongod.conf
 
   mongo-express:
     image: mongo-express
     container_name: mongo-express
+    restart: always
+    networks:
+      - app_network
     profiles:
       - database
+      - application
     env_file: .env
     ports:
       - ${MONGO_EXPRESS_PORT}:8081
@@ -27,3 +36,52 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_DB_USERNAME}
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_DB_PASSWORD}
       ME_CONFIG_MONGODB_SERVER: mongodb
+
+  app-backend:
+    image: app-backend:${VERSION}
+    container_name: app-backend
+    restart: always
+    networks:
+      - app_network
+    profiles:
+      - application
+      - backend
+    env_file: .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`${SERVER_NAME}`) && PathPrefix(`/api`)"
+      - "traefik.http.services.backend.loadbalancer.server.port=${FASTAPI_PORT}"
+      - "traefik.http.middlewares.strip-api.stripprefix.prefixes=/api"
+      - "traefik.http.routers.backend.middlewares=strip-api"
+
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik
+    restart: always
+    profiles:
+      - application
+
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--log.level=DEBUG"
+      - "--accesslog=true"
+      - "--accesslog.filepath=/var/log/traefik/access.log"
+      - "--log.filepath=/var/log/traefik/traefik.log"
+    ports:
+      - "4200:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/app/traefik/logs:/var/log/traefik
+    networks:
+      - app_network
+
+volumes:
+  mongo_data:
+
+networks:
+  app_network:
+    driver: bridge

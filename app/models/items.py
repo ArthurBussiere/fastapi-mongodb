@@ -1,16 +1,17 @@
-from typing import Any, Optional
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
+
 class ItemSchema(BaseModel):
-    name: str = Field()
-    description: str = Field()
+	name: str = Field()
+	description: str = Field()
 
 
 class UpdateItemSchema(BaseModel):
-    name: Optional[str]
-    description: Optional[str]
+	name: Optional[str]
+	description: Optional[str]
 
 
-class ItemInDB(ItemSchema):
-    id: str
+class Item(ItemSchema):
+	id: str

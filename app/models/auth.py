@@ -6,5 +6,9 @@ class Token(BaseModel):
     token_type: str
 
 
+class NewToken(Token):
+    refresh_token: str
+
+
 class TokenData(BaseModel):
     username: str | None = None
