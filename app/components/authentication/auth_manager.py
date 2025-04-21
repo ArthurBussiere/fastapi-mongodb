@@ -3,7 +3,7 @@ from typing import Annotated
 from passlib.context import CryptContext
 
 import jwt
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import OAuth2PasswordBearer
 
 from models.auth import TokenData
@@ -77,3 +77,12 @@ async def get_current_active_user(
 	if current_user.disabled:
 		raise HTTPException(status_code=400, detail='Inactive user')
 	return current_user
+
+
+def conditional_auth_dependency(request: Request):
+	client_host = request.client.host
+	if client_host in ('127.0.0.1', 'localhost'):
+		# Bypass auth for localhost
+		return None
+	# Otherwise run the real auth
+	return get_current_active_user()

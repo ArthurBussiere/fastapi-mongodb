@@ -16,6 +16,7 @@ class Settings(BaseSettings):
 	MONGO_BD_TIMEOUT: int = 2500
 
 	ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+	REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 	SECRET_KEY: str  # openssl rand -hex 32
 	ALGORITHM: str
 

@@ -15,7 +15,9 @@ class Database(ABC):
 		"""
 		Initialize the database connection.
 		"""
-		self.client = motor.motor_asyncio.AsyncIOMotorClient(mongo_details)
+		self.client = motor.motor_asyncio.AsyncIOMotorClient(
+			host=mongo_details, connectTimeoutMS=settings.MONGO_BD_TIMEOUT
+		)
 		self.database = self.client[db_name]
 		self.collection = self.database[collection_name]
 		self.logger = logger
